@@ -1,0 +1,19 @@
+name: Comprobaciones
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  comprobar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el código
+        uses: actions/checkout@v4
+
+      - name: Comprobar que existe el README
+        run: test -f README.md
+
+      - name: Validar los HTML
+        run: npx --yes htmlhint "**/*.html"
